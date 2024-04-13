@@ -8,8 +8,11 @@ import com.JRobertFinal.footballapp.data.matchfavorite.local.response.MatchFavor
 import com.JRobertFinal.footballapp.data.teamfavorite.local.response.TeamFavorite
 import io.reactivex.Single
 
+// Data Access Object (DAO) for handling favorite data
 @Dao
 abstract class FavoriteDao {
+
+    // Queries for MatchFavorite table
     @Query("SELECT * FROM match_favorite WHERE idEvent = :intId")
     abstract fun getFavoriteMatchById(intId: Int?): Single<List<MatchFavorite>>
 
@@ -22,6 +25,7 @@ abstract class FavoriteDao {
     @Query("DELETE FROM match_favorite WHERE idEvent = :intId")
     abstract fun deleteFavoriteMatch(intId: Int?)
 
+    // Queries for TeamFavorite table
     @Query("SELECT * FROM team_favorite WHERE idTeam = :intId")
     abstract fun getFavoriteTeamById(intId: Int?): Single<List<TeamFavorite>>
 

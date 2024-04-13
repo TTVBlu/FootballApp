@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
     companion object {
+        // Function to start MainActivity from any context
         fun start(context: Context) {
             context.startActivity(
                 Intent(context, MainActivity::class.java)
@@ -24,9 +25,11 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Replace the initial fragment with LeagueFragment
         replaceFragment(R.id.frameMain, LeagueFragment.newInstance(), false)
 
         bottomNavigation.apply {
+            // Add icons to bottom navigation
             add(
                 MeowBottomNavigation.Model(
                     1,
@@ -41,17 +44,22 @@ class MainActivity : BaseActivity() {
             )
         }
 
+        // Set listener to replace fragment when bottom navigation item is shown
         bottomNavigation.setOnShowListener {
             replaceFragment(R.id.frameMain, LeagueFragment.newInstance(), false)
         }
 
+        // Show the first item in bottom navigation by default
         bottomNavigation.show(1)
 
+        // Set listener to replace fragment when bottom navigation item is clicked
         bottomNavigation.setOnClickMenuListener {
             when (it.id) {
+                // Replace fragment with LeagueFragment when first item is clicked
                 1 -> {
                     replaceFragment(R.id.frameMain, LeagueFragment.newInstance(), false)
                 }
+                // Replace fragment with FavoriteFragment when second item is clicked
                 2 -> {
                     replaceFragment(R.id.frameMain, FavoriteFragment.newInstance(), false)
                 }
