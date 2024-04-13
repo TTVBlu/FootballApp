@@ -19,8 +19,7 @@ android {
 
     repositories {
         google()
-        jcenter()
-        // Add any other repositories you're using
+        mavenCentral()
     }
     
     buildTypes {
